@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "openclaw-tavily-search": {
+      "version": "0.1.0",
+      "installedAt": 1774151281095
+    },
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1774152542406
+    },
+    "skill-vetter-1-0-0": {
+      "version": "1.0.0",
+      "installedAt": 1774153141327
+    },
+    "porteden-email": {
+      "version": "1.0.4",
+      "installedAt": 1774153502073
+    },
+    "email-management": {
+      "version": "1.0.0",
+      "installedAt": 1774177982011
+    }
+  }
+}
