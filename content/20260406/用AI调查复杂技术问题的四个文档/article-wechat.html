@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用AI调查复杂技术问题的四个文档</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #2c2c2c;
+    border-left: 4px solid #07c160;
+    padding-left: 12px;
+}
+
+p {
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+strong {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+ul {
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.highlight {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<h1>用AI调查复杂技术问题的四个文档</h1>
+
+<div class="section">
+<h2>01 一个让人头大的问题</h2>
+<p>最近我在调查一个显示系统的问题：图层叠加后，透明度失效了。</p>
+<p>系统架构是 QNX + Hypervisor + Android，链路从 App 到 Framework 到 HAL Composer，再到 VitroIO 的 fe 和 be 以及 OpenWFD。强时序要求的生产消费 Pipeline，每一层都可能出问题。</p>
+<p>琢磨了三天多了，还没有解决，最近运气不大好的样子，天道酬勤技能不触发。</p>
+<p>很多内容，特别是代码细节已经超出了我的知识范围。得一层层拆开看。</p>
+<p>一边慨叹全栈工程师的要求越来越多了，一边研究用 AI 辅助的方法。几天下来，有些心得可以跟诸君分享。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>02 项目约束文档：让AI知道它在什么环境里</h2>
+<p>我整理的第一份文档，叫<strong>项目约束</strong>。</p>
+<p>里面写清楚了几件事：</p>
+<ul>
+<li>系统组成：如 QNX + Hypervisor + Android</li>
+<li>代码目录结构，各层代码在哪</li>
+<li>显示屏数量、图层分配、每层的关系</li>
+<li>涉及的硬件平台和接口</li>
+</ul>
+<p>这相当于给 AI 一张地图，让它知道自己在什么样的地形里工作。</p>
+<p>如果不交代这些，AI 会按通用情况推理，但车载系统的显示架构和普通 Android 差别很大，容易跑偏。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>03 Bug现象文档：让AI知道要解决什么问题</h2>
+<p>第二份文档是<strong>Bug现象描述</strong>。</p>
+<p>我尽量写得具体：</p>
+<ul>
+<li>复现步骤是什么</li>
+<li>预期结果是什么</li>
+<li>实际结果是什么</li>
+<li>哪些场景下会出现，哪些不会</li>
+<li>最近有没有相关改动</li>
+</ul>
+<p>给 AI 定义清楚目标，是讨论调查问题的基础。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>04 调查记录文档：和AI共同维护的知识库</h2>
+<p>第三份文档是<strong>调查记录</strong>，这是我和 AI 一起维护的。</p>
+<p>每次讨论完或进行了某个验证后，要把确认的点、排除的假设、下一步方向记下来。下次再问 AI，先把这份记录给它看。</p>
+<p>好处是调查有延续性，不会重复问同样的问题。AI 也能基于之前的结论继续推理，而不是从头开始。</p>
+<p>这有点像团队里的 Wiki，大家都能看到调查到哪一步了，避免信息孤岛。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>05 设备操作文档：让AI能动手实操</h2>
+<p>第四份文档是<strong>设备操作</strong>。</p>
+<p>我把硬件设备的连接方式写进去：adb 怎么连、串口怎么配、怎么 dump 信息、怎么安装测试程序、怎么编译烧写。</p>
+<p>如果能提供一个软件控制的电源，甚至可以让 AI 自己断电重启。</p>
+<p>当然，这些操作都有风险，所以要在文档里写清楚约束：什么情况下可以做什么，哪些操作需要人工确认。</p>
+<p>相当于给 AI 配了一套工具，同时给它安全规范。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>06 其实这也是给程序员的标准</h2>
+<p>看完这四份文档，你可能觉得眼熟。</p>
+<p>没错，这其实也是我们给程序员安排开发或调查任务时需要提供的信息：项目背景、需求描述、历史记录、环境操作。</p>
+<p>以前这些信息可能散落在邮件、聊天、口头交代里，现在整理成文档，既给 AI 用，也给人看。</p>
+<p>你可以让开发或 AI 自己去查，但明显会增加时间成本，而且有错误的风险。</p>
+</div>
+
+<hr>
+
+<div class="section">
+<h2>07 AI无法替代人，但可以扩展人</h2>
+<p>目前 AI 的能力还是有限的，上面这些文档其实都是为了让 AI 按照我们的要求进行工作。</p>
+<p>我觉得主要限制就是上下文长度，输入过多或压缩后导致的注意力问题，如遗忘、幻觉等。</p>
+<p>AI 无法替代人，至少目前不行。它不懂业务场景，不懂项目历史，不懂哪些改动是最近加的、哪些是历史遗留。</p>
+<p>但它可以辅助我们，提高效率，扩展能力边界。</p>
+<p>我们软件开发者的角色应该从"亲自排查每一行代码"转变为"设计排查策略、准备上下文、判断 AI 的输出是否可信"。</p>
+<p>AI 与人互相评审，共同进步。</p>
+</div>
+
+<div class="footer">
+<p>— 完 —</p>
+<p>如果对你有帮助，欢迎点赞、在看、转发</p>
+</div>
+
+</body>
+</html>
